@@ -45,7 +45,7 @@ $(document).ready(function () {
         var modal = $(this)
         var button = $(event.relatedTarget);
         var apiPlanet = button.data('planet');
-        $.getJSON(apiPlanet.replace('http':'https'), function (response) {
+        $.getJSON(apiPlanet, function (response) {
             var planetName = response['name'];
             modal.find('.modal-title').text('Residents of ' + planetName)
             var residents = response['residents'];
