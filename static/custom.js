@@ -35,7 +35,7 @@ $(document).ready(function () {
         ;
     };
 
-    $.getJSON(api, function (response) {
+    $.getJSON(api.replace('http':'https'), function (response) {
         var planets = response['results'];
         appendTableData(planets);
     });
@@ -45,13 +45,13 @@ $(document).ready(function () {
         var modal = $(this)
         var button = $(event.relatedTarget);
         var apiPlanet = button.data('planet');
-        $.getJSON(apiPlanet, function (response) {
+        $.getJSON(apiPlanet.replace('http':'https'), function (response) {
             var planetName = response['name'];
             modal.find('.modal-title').text('Residents of ' + planetName)
             var residents = response['residents'];
             for (indx in residents) {
                 var apiResident = residents[indx];
-                $.getJSON(apiResident, function (response) {
+                $.getJSON(apiResident.replace('http':'https'), function (response) {
                     modal.find('.table tbody').append("<tr></tr>")
                     modal.find('.table tbody tr:last').append("<td></td>")
                     modal.find('.table tbody tr td:last').text(response['name'])
@@ -82,10 +82,10 @@ $(document).ready(function () {
 
 
     $("#next").click(function () {
-        $.getJSON(api, function (response) {
+        $.getJSON(api.replace('http':'https'), function (response) {
             api = response['next'];
             $(".table tbody tr").remove();
-            $.getJSON(api, function (response) {
+            $.getJSON(api.replace('http':'https'), function (response) {
                 var planets = response['results'];
                 appendTableData(planets);
 
@@ -102,10 +102,10 @@ $(document).ready(function () {
     });
 
     $("#pre").click(function () {
-        $.getJSON(api, function (response) {
+        $.getJSON(api.replace('http':'https'), function (response) {
             api = response['previous'];
             $(".table tbody tr").remove();
-            $.getJSON(api, function (response) {
+            $.getJSON(api.replace('http':'https'), function (response) {
                 var planets = response['results'];
                 appendTableData(planets);
 
